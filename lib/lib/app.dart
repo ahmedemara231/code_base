@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:code_base/lib/view/home/home.dart';
+import 'package:code_base/lib/view/route_observer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -44,6 +43,7 @@ class _AppState extends State<App> {
         title: 'App Name'.tr(), // give the translation of App Name for example
         debugShowCheckedModeBanner: false,
         navigatorKey: navigatorKey,
+        navigatorObservers: [AppNavigationObserver()],
         theme: CacheHelper.getInstance().shared.getBool('appTheme') == false
             ? ThemeData.light()
             : ThemeData.dark(),
