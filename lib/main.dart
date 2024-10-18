@@ -8,6 +8,8 @@ import 'lib/constants/app_constants.dart';
 import 'lib/model/local/secure.dart';
 import 'lib/model/local/shared.dart';
 import 'lib/view_model/bloc_observer.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +22,16 @@ void main()async {
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
+
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+
+  // asynchronous errors
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 
   runApp(
     EasyLocalization(

@@ -3,4 +3,9 @@ extension ConvertToInt on String{
   {
     return int.parse(this);
   }
+
+  double toDouble()
+  {
+    return double.parse(this);
+  }
 }
