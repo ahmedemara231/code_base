@@ -21,7 +21,10 @@ class HomeState extends Equatable
     );
   }
 
-  HomeState generate({required States state, dynamic homeData, String? errorMessage})
+  HomeState copyWith({
+    required States state,
+    dynamic homeData, String? errorMessage
+  })
   {
     return HomeState(
       currentState: state,

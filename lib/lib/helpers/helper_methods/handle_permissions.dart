@@ -35,7 +35,6 @@ Future<void> askForPermission({
 })async
 {
   bool status = await permission.status.isGranted;
-  print(status);
   if(!status)
   {
     PermissionStatus status = await permission.request();
