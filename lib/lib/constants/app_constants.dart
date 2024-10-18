@@ -11,6 +11,11 @@ class Constants
   //date time
   static String dataTime = Jiffy().yMMMd;
 
+
+  // regExp
+  static String emailRegExp = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.["r"a-zA-Z]+";
+  static String phoneRegExp = r'(^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]'r'{4,6}$)';
+
   // other
   static void configLoading() {
     EasyLoading.instance
