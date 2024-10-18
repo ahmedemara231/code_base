@@ -37,6 +37,8 @@ class _AppState extends State<App> {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
+        // shortcuts: ,
+        // actions: ,
         locale: context.locale, // context.setLocal
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
