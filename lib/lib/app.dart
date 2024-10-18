@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:code_base/lib/view/home/home.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -28,15 +30,20 @@ class _AppState extends State<App> {
     super.initState();
   }
 
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
+      return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp(
-        title: 'App Name'.tr(),
+        locale: context.locale, // context.setLocal
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        title: 'App Name'.tr(), // give the translation of App Name for example
         debugShowCheckedModeBanner: false,
+        navigatorKey: navigatorKey,
         theme: CacheHelper.getInstance().shared.getBool('appTheme') == false
             ? ThemeData.light()
             : ThemeData.dark(),
