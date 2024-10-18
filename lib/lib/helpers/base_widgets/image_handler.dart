@@ -2,10 +2,11 @@ import 'package:code_base/lib/helpers/base_widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../constants/app_constants.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class MyNetworkImage extends StatelessWidget {
+class NetworkImageHandler extends StatelessWidget {
   final String url;
-  const MyNetworkImage({super.key, required this.url});
+  const NetworkImageHandler({super.key, required this.url});
 
   @override
   Widget build(BuildContext context) {
@@ -39,3 +40,36 @@ class MyNetworkImage extends StatelessWidget {
     );
   }
 }
+
+class CachedNetworkImageHandler extends StatelessWidget {
+
+  final String url;
+  final double? height;
+  final double? width;
+
+  const CachedNetworkImageHandler({super.key,
+    required this.url,
+    this.width,
+    this.height
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return CachedNetworkImage(
+      imageUrl: url,
+      width: width,
+      height: height,
+      fit: BoxFit.fill,
+      progressIndicatorBuilder: (context, url, downloadProgress) =>
+          CircularProgressIndicator(value: downloadProgress.progress),
+      errorWidget: (context, url, error) => Center(
+        child: MyText(
+          text: 'Failed Load Image',
+          color: Constants.appColor,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+}
+
