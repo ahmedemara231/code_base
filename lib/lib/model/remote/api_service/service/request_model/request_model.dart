@@ -34,14 +34,13 @@ class RequestModel
   {
     if(data != null)
     {
-      for(MapEntry entry in data)
-      {
-        if(entry.value is File)
+      (data as Map<String, dynamic>).forEach((key, value)async {
+        if(value is File)
         {
           isFormData = true;
-          await entry.value.toMultiPartFile();
+          await value.toMultiPartFile();
         }
-      }
+      });
     }
   }
 
