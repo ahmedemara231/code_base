@@ -10,9 +10,13 @@ import 'lib/model/local/shared.dart';
 import 'lib/view_model/bloc_observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
