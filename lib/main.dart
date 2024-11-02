@@ -7,6 +7,7 @@ import 'lib/app.dart';
 import 'lib/constants/app_constants.dart';
 import 'lib/model/local/secure.dart';
 import 'lib/model/local/shared.dart';
+import 'lib/view/error_handling.dart/unexpected_error_handler.dart';
 import 'lib/view_model/bloc_observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -14,9 +15,9 @@ import 'package:firebase_core/firebase_core.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
@@ -27,8 +28,11 @@ void main()async {
     DeviceOrientation.portraitUp,
   ]);
 
+  // Flutter errors
   FlutterError.onError = (errorDetails) {
     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+    FlutterError.dumpErrorToConsole(errorDetails);
+    runApp(UnexpectedErrorHandler(errorDetails: errorDetails));
   };
 
   // asynchronous errors
@@ -39,7 +43,10 @@ void main()async {
 
   runApp(
     EasyLocalization(
-        supportedLocales: const [Locale('en', 'US'), Locale('ar', 'SA')],
+        supportedLocales: const [
+          Locale('en', 'US'),
+          Locale('ar', 'SA')
+        ],
         path: 'assets/translation',
         fallbackLocale: const Locale('en', 'US'),
         child: const App()

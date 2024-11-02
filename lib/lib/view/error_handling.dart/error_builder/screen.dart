@@ -1,7 +1,7 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/material.dart';
 
-import '../../helpers/base_widgets/text.dart';
+import '../../../helpers/base_widgets/text.dart';
 
 class ErrorBuilder extends StatelessWidget {
   final String msg;

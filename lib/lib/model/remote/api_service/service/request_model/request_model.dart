@@ -1,7 +1,6 @@
 import 'dart:io';
-
+import 'package:code_base/lib/model/remote/api_service/extensions/file.dart';
 import 'package:dio/dio.dart';
-
 import 'headers.dart';
 
 class RequestModel
