@@ -1,30 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
-extension Routes on BuildContext
-{
-  normalNewRoute(Widget newRoute)
-  {
-    Navigator.push(
+extension Routes on BuildContext{
+  Future normalNewRoute(Widget newRoute, {PageTransitionType? type})async {
+    if(type != null){
+      return await Navigator.push(
         this,
-        MaterialPageRoute(
-            builder: (context) => newRoute,
+        PageTransition(
+          type: type,
+          child: newRoute,
         ),
+      );
+    }
+    return await Navigator.push(
+      this,
+      MaterialPageRoute(
+        builder: (context) => newRoute,
+      ),
     );
   }
 
-  removeOldRoute(Widget newRoute)
-  {
-    Navigator.pushAndRemoveUntil(
+  Future removeOldRoute(Widget newRoute, {PageTransitionType? type})async {
+    if(type != null){
+      return await Navigator.pushAndRemoveUntil(
         this,
-        MaterialPageRoute(
-          builder: (context) => newRoute,
+        PageTransition(
+          type: type,
+          child: newRoute,
         ), (route) => false,
+      );
+    }
+    return Navigator.pushAndRemoveUntil(
+      this,
+      MaterialPageRoute(
+        builder: (context) => newRoute,
+      ), (route) => false,
     );
   }
 
-  replacementRoute(Widget newRoute)
-  {
-    Navigator.pushReplacement(
+  Future replacementRoute(Widget newRoute, {PageTransitionType? type})async {
+    if(type != null){
+      return await Navigator.pushReplacement(
+        this,
+        PageTransition(
+          type: type,
+          child: newRoute,
+        ),
+      );
+    }
+    return await Navigator.pushReplacement(
       this,
       MaterialPageRoute(
         builder: (context) => newRoute,
