@@ -12,19 +12,16 @@ import 'error_handling/errors.dart';
 import 'error_handling/interceptors/bad_response.dart';
 import 'error_handling/interceptors/unknown.dart';
 
-class DioConnection implements ApiService
-{
+class DioConnection implements ApiService {
   late Dio dio;
   // late Dio dioForDownload;
-  DioConnection()
-  {
+  DioConnection() {
     dio = Dio()
       ..options.baseUrl = ApiConstants.baseUrl
       ..options.connectTimeout = ApiConstants.timeoutDuration
       ..options.receiveTimeout = ApiConstants.timeoutDuration;
 
-    List<InterceptorsWrapper> myInterceptors =
-    [
+    List<InterceptorsWrapper> myInterceptors = [
       BadResponseInterceptor(dio),
       UnknownErrorInterceptor(),
     ];
@@ -36,28 +33,24 @@ class DioConnection implements ApiService
 
   static DioConnection? dioHelper;
 
-  static DioConnection getInstance()
-  {
+  static DioConnection getInstance() {
     return dioHelper ??= DioConnection();
   }
 
   final cancelRequest = CancelToken();
-
-  void cancelApiRequest()
-  {
+  void _cancelApiRequest() {
     cancelRequest.cancel('canceled');
   }
 
   @override
-  Future<Result<Response,CustomError>> callApi({
+  Future<Response> callApi({
     required RequestModel request
-  }) async
-  {
+  }) async {
     final connectivityResult = await Connectivity().checkConnectivity();
     switch(connectivityResult)
     {
       case ConnectivityResult.none :
-        return Result.error(
+        throw Result.error(
           NetworkError(
               'Please check the internet and try again'
           ),
@@ -85,10 +78,9 @@ class DioConnection implements ApiService
           String prettyJson = const JsonEncoder.withIndent('  ').convert(response.data);
           log(prettyJson);
 
-          return Result.success(response);
-        }on DioException catch(e)
-        {
-          return Result.error(handleErrors(e));
+          return response;
+        }on DioException catch(e) {
+          throw ReceivedError.handle(e);
         }
     }
   }
