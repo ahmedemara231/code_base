@@ -1,7 +1,8 @@
-import 'package:code_base/src/constants/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_text/flutter_expandable_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../constants/app_constants.dart';
 
 class MyExpandableText extends StatelessWidget {
   final String? text;

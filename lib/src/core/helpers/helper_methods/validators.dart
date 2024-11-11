@@ -1,4 +1,4 @@
-import 'package:code_base/src/constants/app_constants.dart';
+import '../../constants/app_constants.dart';
 
 class Validators {
   static String? validateEmpty(String? value,) {

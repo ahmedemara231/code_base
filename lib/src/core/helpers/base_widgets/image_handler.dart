@@ -1,10 +1,10 @@
 import 'package:code_base/src/core/helpers/base_widgets/text.dart';
-import 'package:code_base/src/core/helpers/base_widgets/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import '../../../constants/app_constants.dart';
+import '../../constants/app_constants.dart';
+
 class NetworkImageHandler extends StatelessWidget {
   final String url;
   const NetworkImageHandler({super.key, required this.url});

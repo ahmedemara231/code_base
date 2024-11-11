@@ -1,5 +1,5 @@
 import 'package:code_base/src/app.dart';
-import 'package:code_base/src/constants/app_constants.dart';
+import 'package:code_base/src/core/constants/app_constants.dart';
 import 'package:code_base/src/core/data_source/local/secure.dart';
 import 'package:code_base/src/core/data_source/local/shared.dart';
 import 'package:code_base/src/core/helpers/app_widgets/error_handling.dart/unexpected_error_handler.dart';
