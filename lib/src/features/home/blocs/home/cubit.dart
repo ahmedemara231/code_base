@@ -10,10 +10,12 @@ class HomeCubit extends Cubit<HomeState> {
     final result = await _homeGetRepo.getHomeData();
     result.when(
             (success) => emit(
-                state.copyWith(state: States.homeDataSuccess
+                state.copyWith(state: States.homeDataSuccess,
+                  homeData: result.getOrThrow()
                 )),
             (error) => emit(
-                state.copyWith(state: States.homeDataError
+                state.copyWith(state: States.homeDataError,
+                  errorMessage: result.tryGetError()!.message
                 )),
     );
   }
