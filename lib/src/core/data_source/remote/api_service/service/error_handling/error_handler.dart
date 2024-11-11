@@ -17,8 +17,7 @@ class ReceivedError{
         );
 
       case DioExceptionType.badResponse:
-        switch(e.response!.statusCode)
-        {
+        switch(e.response!.statusCode) {
           case 400:
             return BadRequestError(
               e.response?.data['msg'],
@@ -45,7 +44,7 @@ class ReceivedError{
 
           default:
             return BadResponseError(
-              e.response?.data['error']['email'][0],
+              e.response?.statusMessage,
             );
         }
 
