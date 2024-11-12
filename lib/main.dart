@@ -3,7 +3,8 @@ import 'package:code_base/src/core/constants/app_constants.dart';
 import 'package:code_base/src/core/data_source/local/secure.dart';
 import 'package:code_base/src/core/data_source/local/shared.dart';
 import 'package:code_base/src/core/helpers/app_widgets/error_handling.dart/unexpected_error_handler.dart';
-import 'package:code_base/src/core/observers/bloc_observer.dart';
+import 'package:code_base/src/core/shared/observers/bloc_observer.dart';
+import 'package:code_base/src/core/shared/service_locator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,6 +18,7 @@ void main()async {
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
+  ServiceLocator().setUpBlocs();
   await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
