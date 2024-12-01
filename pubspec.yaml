@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+#  local data source
   shared_preferences: ^2.2.2
   flutter_secure_storage: ^9.0.0
   cached_network_image: ^3.3.1
