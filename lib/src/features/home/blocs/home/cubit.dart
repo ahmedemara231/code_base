@@ -1,10 +1,10 @@
 import 'package:code_base/src/features/home/blocs/home/state.dart';
-import 'package:code_base/src/features/home/repositories/get.dart';
+import 'package:code_base/src/features/home/repositories/home_repo/home_repo_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._homeGetRepo) : super(HomeState.initial());
-  late final HomeGetRepo _homeGetRepo;
+  late final HomeRepoImpl _homeGetRepo;
   Future<void> getHomeData()async{
     emit(state.copyWith(state: States.homeDataLoading));
     final result = await _homeGetRepo.getHomeData();
