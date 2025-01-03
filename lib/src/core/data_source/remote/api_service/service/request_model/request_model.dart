@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:code_base/src/core/data_source/remote/api_service/extensions/file.dart';
+import 'package:code_base/src/core/data_source/remote/api_service/service/request_model/methods.dart';
 import 'package:dio/dio.dart';
 import 'headers.dart';
 
-class RequestModel
-{
-  String method;
+class RequestModel {
+  RequestMethod method;
   String endPoint;
   RequestHeaders? headers;
   dynamic data;
@@ -29,19 +29,15 @@ class RequestModel
 
 
 
-  Future<void> prepareDataForRequest()async
-  {
-    if(data != null)
-    {
+  Future<void> prepareDataForRequest()async {
+    if(data != null) {
       (data as Map<String, dynamic>).forEach((key, value)async {
-        if(value is File)
-        {
+        if(value is File) {
           isFormData = true;
           await value.toMultiPartFile();
         }
       });
     }
   }
-
 }
 

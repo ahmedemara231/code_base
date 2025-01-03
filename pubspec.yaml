@@ -46,7 +46,7 @@ dependencies:
   page_transition: ^2.1.0
   photo_view: ^0.15.0
   custom_refresh_indicator: ^3.1.0
-  jiffy: ^5.0.1
+  jiffy: any
   panara_dialogs: ^0.1.5
   bottom_navy_bar: ^6.0.0
   easy_stepper: ^0.8.5+1
