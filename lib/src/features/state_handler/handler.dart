@@ -1,6 +1,7 @@
 import 'package:code_base/src/core/helpers/app_widgets/error_builder/screen.dart';
-import 'package:code_base/src/features/home/blocs/home/state.dart';
 import 'package:flutter/material.dart';
+
+import '../home/presentation/blocs/home/state.dart';
 
 class StateHandler extends StatefulWidget {
   const StateHandler({super.key,
@@ -9,7 +10,7 @@ class StateHandler extends StatefulWidget {
     required this.successWidget,
     required this.asyncCall,
     this.onError,
-    this.errorMsg,
+    this.errorMsg = '',
     this.onLoading,
     this.onSuccess,
     required this.currentState
@@ -61,10 +62,10 @@ class _StateHandlerState extends State<StateHandler> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( // able to put blocBuilder with T and E
       body: widget.currentState == States.homeDataLoading? _loading :
       widget.currentState == States.homeDataError?
-      _error(widget.errorMsg?? 'error') : _success
+      _error(widget.errorMsg!) : _success
     );
   }
 }

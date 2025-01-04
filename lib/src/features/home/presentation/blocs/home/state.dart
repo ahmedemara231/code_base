@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-import '../../data_source/models/doctor_data.dart';
+import '../../../data/data_source/models/doctor_data.dart';
+
 
 enum States {homeInitial, homeDataLoading, homeDataSuccess, homeDataError}
-class HomeState extends Equatable
-{
+class HomeState extends Equatable {
   final States? currentState;
   final List<DoctorInfo>? homeData;
   final String? errorMsg;
@@ -26,8 +26,7 @@ class HomeState extends Equatable
   HomeState copyWith({
     required States state,
     dynamic homeData, String? errorMessage
-  })
-  {
+  }) {
     return HomeState(
       currentState: state,
       homeData: homeData?? this.homeData,
