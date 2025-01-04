@@ -9,6 +9,7 @@ class StateHandler extends StatefulWidget {
     required this.successWidget,
     required this.asyncCall,
     this.onError,
+    this.errorMsg,
     this.onLoading,
     this.onSuccess,
     required this.currentState
@@ -18,11 +19,12 @@ class StateHandler extends StatefulWidget {
   final States currentState;
   final Widget? loadingWidget;
   final Widget? errorWidget;
+  final String? errorMsg;
   final Widget successWidget;
 
   final Function()? onLoading;
   final Function(String error)? onError;
-  final Function(dynamic success)? onSuccess;
+  final Function()? onSuccess;
 
 
   @override
@@ -37,13 +39,13 @@ class _StateHandlerState extends State<StateHandler> {
     super.initState();
   }
 
-  Widget get loading{
+  Widget get _loading{
     widget.onLoading?.call();
     return widget.loadingWidget ??
         const Center(child: CircularProgressIndicator());
   }
 
-  Widget error(String error){
+  Widget _error(String error){
     widget.onError?.call(error);
     return widget.errorWidget ??
         ErrorBuilder(
@@ -52,16 +54,17 @@ class _StateHandlerState extends State<StateHandler> {
         );
   }
 
-  Widget success(dynamic success){ // ممكن اشيل الداتا من هنا اساسا عشان مش لازم استخدمها
-    widget.onSuccess?.call(success);
+  Widget get _success{
+    widget.onSuccess?.call();
     return widget.successWidget;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.currentState == States.homeDataLoading? loading :
-      widget.currentState == States.homeDataError? // TODO: errorWidget : success(successData)
+      body: widget.currentState == States.homeDataLoading? _loading :
+      widget.currentState == States.homeDataError?
+      _error(widget.errorMsg?? 'error') : _success
     );
   }
 }
