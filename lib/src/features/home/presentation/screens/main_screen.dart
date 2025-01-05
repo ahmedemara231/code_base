@@ -16,30 +16,30 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
           create: (context) => GetIt.instance.get<HomeCubit>(),
-          child: const _HomeImpl()
+          child: _HomeImpl2()
     );
   }
 }
 
 class _HomeImpl2 extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           return StateHandler(
-            asyncCall: () => context.read<HomeCubit>().getHomeData(),
-            successWidget: ListView.builder(
-                itemCount: state.homeData!.length,
-                itemBuilder: (context, index) => ListTile(
-                      leading: NetworkImageHandler(
-                          url: state.homeData![index].photo
-                      ),
-                      title: AppText(text: state.homeData![index].name),
-                      subtitle: AppText(text: state.homeData![index].description),
-                    ),
-              ),
+            asyncCall: () => context.read<HomeCubit>().getData(),
+            successWidget: Center(child: AppText(text: 'Test')),
+            // ListView.builder(
+            //     itemCount: state.homeData!.length,
+            //     itemBuilder: (context, index) => ListTile(
+            //           leading: NetworkImageHandler(
+            //               url: state.homeData![index].photo
+            //           ),
+            //           title: AppText(text: state.homeData![index].name),
+            //           subtitle: AppText(text: state.homeData![index].description),
+            //         ),
+            //   ),
             currentState: state.currentState?? States.homeInitial,
             errorMsg: state.errorMsg,
           );

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:code_base/src/features/home/presentation/blocs/home/state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,4 +23,11 @@ class HomeCubit extends Cubit<HomeState> {
     );
   }
 
+  Future<void> getData()async{
+    emit(state.copyWith(state: States.homeDataLoading));
+
+    await Future.delayed(const Duration(seconds: 2));
+    log('data reached');
+    emit(state.copyWith(state: States.homeDataSuccess));
+  }
 }
