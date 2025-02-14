@@ -1,4 +1,4 @@
-import 'package:code_base/src/core/helpers/app_widgets/error_builder/screen.dart';
+import 'package:code_base/src/core/helpers/base_widgets/error/error_builder.dart';
 import 'package:code_base/src/core/helpers/base_widgets/image_handler.dart';
 import 'package:code_base/src/core/helpers/base_widgets/text.dart';
 import 'package:code_base/src/features/state_handler/handler.dart';

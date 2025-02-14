@@ -1,4 +1,4 @@
-import 'package:code_base/src/core/helpers/app_widgets/error_builder/screen.dart';
+import 'package:code_base/src/core/helpers/base_widgets/error/error_builder.dart';
 import 'package:flutter/material.dart';
 
 import '../home/presentation/blocs/home/state.dart';
