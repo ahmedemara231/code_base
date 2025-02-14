@@ -45,6 +45,10 @@ void main()async {
     return true;
   };
 
+  // if (kReleaseMode) {
+  //   ErrorWidget.builder =
+  //       (FlutterErrorDetails details) => const ExceptionView();
+  // }
   runApp(
     EasyLocalization(
         supportedLocales: const [
