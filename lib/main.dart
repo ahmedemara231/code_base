@@ -15,18 +15,21 @@ import 'package:flutter/foundation.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
   ServiceLocator().setUpBlocs();
-  await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  await ScreenUtil.ensureScreenSize();
-  await CacheHelper.getInstance().cacheInit();
   SecureStorage.getInstance().init();
   Constants.configLoading();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
+  ]);
+
+  await Future.wait([
+    EasyLocalization.ensureInitialized(),
+    ScreenUtil.ensureScreenSize(),
+    CacheHelper.getInstance().cacheInit(),
+    // await Firebase.initializeApp(
+    //   options: DefaultFirebaseOptions.currentPlatform,
+    // );
   ]);
 
   // Flutter errors
