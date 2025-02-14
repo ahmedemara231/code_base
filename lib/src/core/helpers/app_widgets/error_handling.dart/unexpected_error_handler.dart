@@ -1,5 +1,5 @@
-import 'package:code_base/src/core/helpers/base_extensions/context/padding.dart';
 import 'package:code_base/src/core/helpers/base_widgets/text.dart';
+import 'package:code_base/src/core/helpers/extensions/context/padding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -43,10 +43,7 @@ class PreviewError extends StatelessWidget {
               fontSize: 24.sp,
               fontWeight: FontWeight.bold,
             ),
-            Padding(
-              padding: context.verticalSymmetricPadding(16.h),
-              child: AppText(text: errorDetails),
-            ),
+            AppText(text: errorDetails).paddingSymmetric(vertical: 16.h),
             AppText(
               text: 'Please wait some time until the error is resolved and try again later',
             ),

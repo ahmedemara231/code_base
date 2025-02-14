@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/src/config/res/constants_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 extension PaddingExtension on Widget {
@@ -16,8 +15,8 @@ extension PaddingExtension on Widget {
   }) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: horizontal ?? ConstantManager.zeroAsDouble,
-        vertical: vertical ?? ConstantManager.zeroAsDouble,
+        horizontal: horizontal ?? 0.0,
+        vertical: vertical ?? 0.0,
       ),
       child: this,
     );

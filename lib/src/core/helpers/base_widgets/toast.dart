@@ -1,5 +1,5 @@
-import 'package:code_base/src/core/helpers/base_extensions/context/mediaQuery.dart';
 import 'package:code_base/src/core/helpers/base_widgets/text.dart';
+import 'package:code_base/src/core/helpers/extensions/context/mediaQuery.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -31,9 +31,9 @@ class AppToast
       positionedToastBuilder: (context, child)
       {
         return Positioned(
-          bottom: context.setWidth(5),
-          left: context.setWidth(4),
-          right: context.setWidth(4),
+          bottom: context.width / 5,
+          left: context.width / 4,
+          right: context.width / 4,
           child: child,
         );
       },

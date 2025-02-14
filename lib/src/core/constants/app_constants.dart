@@ -9,7 +9,7 @@ class Constants
   static var scaffoldBackGroundColor = HexColor('#242424');
 
   //date time
-  static String dataTime = Jiffy().yMMMd;
+  static String dataTime = Jiffy.now().yMMMd;
 
 
   // regExp
