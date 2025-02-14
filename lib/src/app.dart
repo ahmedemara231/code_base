@@ -19,7 +19,7 @@ class _AppState extends State<App> {
 
   @override
   void initState() {
-    AppPermission().check(
+    AppPermission.check(
       PermissionProcessModel(
         permissionClient: PermissionClient.notification,
         onPermissionGranted: () {},

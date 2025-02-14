@@ -1,43 +1,24 @@
-import 'package:code_base/src/core/helpers/base_widgets/text.dart';
-import 'package:code_base/src/core/helpers/extensions/context/mediaQuery.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class AppToast
-{
+import '../../constants/app_colors.dart';
+
+class AppToast {
   static final toast = FToast();
 
-  static void showToast(BuildContext context,{required String msg, Color? color})
-  {
-    toast.init(context);
-    toast.showToast(
-      child: Align(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: color?? Colors.green,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 28),
-            child: AppText(
-              text: msg,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
-      toastDuration: const Duration(seconds: 2),
-      positionedToastBuilder: (context, child)
-      {
-        return Positioned(
-          bottom: context.width / 5,
-          left: context.width / 4,
-          right: context.width / 4,
-          child: child,
-        );
-      },
+  static void show({
+    required String msg,
+    Color? color,
+    Color? textColor,
+  }) {
+    Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.BOTTOM,
+      backgroundColor: color ?? AppColors.primaryColor,
+      textColor: textColor ?? AppColors.white,
+      fontSize: 16.sp,
     );
   }
 }

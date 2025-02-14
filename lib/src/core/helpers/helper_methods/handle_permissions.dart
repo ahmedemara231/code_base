@@ -1,25 +1,26 @@
+import 'package:code_base/src/core/helpers/base_widgets/toast.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../models/permession_process_model.dart';
 
 class AppPermission{
-  late Permission _permission;
+  static late Permission permission;
 
-  Future<void> check(PermissionProcessModel processModel)async {
+  static Future<void> check(PermissionProcessModel processModel)async {
     switch(processModel.permissionClient) {
       case PermissionClient.camera:
-        _permission = Permission.camera;
+        permission = Permission.camera;
 
       case PermissionClient.storage:
-        _permission = Permission.storage;
+        permission = Permission.storage;
 
       case PermissionClient.contacts:
-        _permission = Permission.contacts;
+        permission = Permission.contacts;
 
       case PermissionClient.notification:
-        _permission = Permission.notification;
+        permission = Permission.notification;
 
-      default:
-        return;
+      case PermissionClient.location:
+        permission = Permission.location;
     }
 
     await askForPermission(
@@ -27,21 +28,25 @@ class AppPermission{
         onPermissionDenied: processModel.onPermissionDenied
     );
   }
-  Future<void> askForPermission({
+
+  static Future<void> askForPermission({
     required Function() onPermissionGranted,
     required Function() onPermissionDenied,
-  })async
-  {
-    bool status = await _permission.status.isGranted;
-    if(!status)
-    {
-      PermissionStatus status = await _permission.request();
-      switch(status)
-      {
+    String? messageOnDenied,
+  })async {
+    bool status = await permission.status.isGranted;
+    if(!status) {
+      PermissionStatus status = await permission.request();
+      switch(status) {
         case PermissionStatus.granted:
           onPermissionGranted();
+
         default:
           onPermissionDenied();
+          if(messageOnDenied != null) {
+            AppToast.show(msg: messageOnDenied);
+          }
+          openAppSettings();
       }
     }
     else{
