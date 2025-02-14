@@ -1,8 +1,9 @@
 import 'package:permission_handler/permission_handler.dart';
-import '../data_types/permession_process_model.dart';
+import '../models/permession_process_model.dart';
 
 class AppPermission{
   late Permission _permission;
+
   Future<void> check(PermissionProcessModel processModel)async {
     switch(processModel.permissionClient) {
       case PermissionClient.camera:
