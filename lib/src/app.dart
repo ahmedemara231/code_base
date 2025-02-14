@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../test_RX_dart.dart';
 import 'core/data_source/local/shared.dart';
 import 'core/helpers/data_types/permession_process_model.dart';
 import 'core/helpers/helper_methods/handle_permissions.dart';
@@ -48,7 +49,7 @@ class _AppState extends State<App> {
         theme: CacheHelper.getInstance().shared.getBool('appTheme') == false
             ? ThemeData.light()
             : ThemeData.dark(),
-        home: const Home(),
+        home: const RxUiTest(),
         builder: EasyLoading.init(),
       ),
     );

@@ -1,31 +1,116 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_base/src/config/res/constants_manager.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-extension AppPadding on BuildContext{
-  EdgeInsetsGeometry allPadding(double value){
-    return EdgeInsets.all(value);
+extension PaddingExtension on Widget {
+  Widget padding(EdgeInsetsGeometry padding) {
+    return Padding(
+      padding: padding,
+      child: this,
+    );
   }
 
-  EdgeInsetsGeometry horizontalSymmetricPadding(double value){
-    return EdgeInsets.symmetric(horizontal: value);
+  Widget paddingSymmetric({
+    double? horizontal,
+    double? vertical,
+  }) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontal ?? ConstantManager.zeroAsDouble,
+        vertical: vertical ?? ConstantManager.zeroAsDouble,
+      ),
+      child: this,
+    );
   }
 
-  EdgeInsetsGeometry verticalSymmetricPadding(double value){
-    return EdgeInsets.symmetric(vertical: value);
+  Widget paddingAll(double padding) {
+    return Padding(
+      padding: EdgeInsets.all(padding),
+      child: this,
+    );
   }
 
-  EdgeInsetsGeometry onlyTopPadding(double value){
-    return EdgeInsets.only(top: value);
+  Widget paddingLeft(double padding) {
+    return Padding(
+      padding: EdgeInsets.only(left: padding),
+      child: this,
+    );
   }
 
-  EdgeInsetsGeometry onlyBottomPadding(double value){
-    return EdgeInsets.only(bottom: value);
+  Widget paddingRight(double padding) {
+    return Padding(
+      padding: EdgeInsets.only(right: padding),
+      child: this,
+    );
   }
 
-  EdgeInsetsGeometry onlyRightPadding(double value){
-    return EdgeInsets.only(right: value);
+  Widget paddingTop(double padding) {
+    return Padding(
+      padding: EdgeInsets.only(top: padding),
+      child: this,
+    );
   }
 
-  EdgeInsetsGeometry onlyLeftPadding(double value){
-    return EdgeInsets.only(left: value);
+  Widget paddingBottom(double padding) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: padding),
+      child: this,
+    );
+  }
+
+  Widget paddingStart(double padding) {
+    return Padding(
+      padding: EdgeInsetsDirectional.only(start: padding),
+      child: this,
+    );
+  }
+
+  Widget paddingEnd(double padding) {
+    return Padding(
+      padding: EdgeInsetsDirectional.only(end: padding),
+      child: this,
+    );
+  }
+
+  Widget paddingOnly({
+    double? left,
+    double? right,
+    double? top,
+    double? bottom,
+  }) {
+    return Padding(
+      padding: EdgeInsets.only(
+        left: left ?? 0.0,
+        right: right ?? 0.0,
+        top: top ?? 0.0,
+        bottom: bottom ?? 0.0,
+      ),
+      child: this,
+    );
+  }
+
+  Widget defaultAppScreenPadding() => Padding(
+    padding: EdgeInsets.symmetric(
+      horizontal: 12.w,
+      vertical: 36.w,
+    ),
+    child: this,
+  );
+
+  Widget paddingOnlyDirectional({
+    double? start,
+    double? end,
+    double? top,
+    double? bottom,
+  }) {
+    return Padding(
+      padding: EdgeInsetsDirectional.only(
+        start: start ?? 0.0,
+        end: end ?? 0.0,
+        top: top ?? 0.0,
+        bottom: bottom ?? 0.0,
+      ),
+      child: this,
+    );
   }
 }
